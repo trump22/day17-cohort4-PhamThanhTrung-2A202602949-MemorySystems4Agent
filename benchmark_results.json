@@ -1,0 +1,42 @@
+{
+  "Standard Benchmark": [
+    {
+      "agent_name": "Baseline",
+      "agent_tokens_only": 2615,
+      "prompt_tokens_processed": 23405,
+      "recall_score": 0.0,
+      "response_quality": 0.2,
+      "memory_growth_bytes": 0,
+      "compactions": 0
+    },
+    {
+      "agent_name": "Advanced",
+      "agent_tokens_only": 2558,
+      "prompt_tokens_processed": 30629,
+      "recall_score": 1.0,
+      "response_quality": 1.0,
+      "memory_growth_bytes": 260,
+      "compactions": 0
+    }
+  ],
+  "Long-Context Stress Benchmark": [
+    {
+      "agent_name": "Baseline",
+      "agent_tokens_only": 449,
+      "prompt_tokens_processed": 24653,
+      "recall_score": 0.0,
+      "response_quality": 0.20000000000000004,
+      "memory_growth_bytes": 0,
+      "compactions": 0
+    },
+    {
+      "agent_name": "Advanced",
+      "agent_tokens_only": 460,
+      "prompt_tokens_processed": 14181,
+      "recall_score": 1.0,
+      "response_quality": 1.0,
+      "memory_growth_bytes": 223,
+      "compactions": 2
+    }
+  ]
+}

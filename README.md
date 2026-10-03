@@ -182,3 +182,39 @@ Nếu các bạn là giảng viên hoặc reviewer:
 - `Rubric.md`: tiêu chí chấm điểm và bonus
 
 Track này được thiết kế để các bạn không chỉ “dùng agent”, mà còn bắt đầu nghĩ như một người thiết kế **memory system** cho agent production.
+
+
+## Bài làm đã hoàn thiện
+
+Xem [REPORT.md](REPORT.md) để đọc kết quả benchmark, phân tích trade-off, bonus và giới hạn.
+
+### Chạy nhanh offline (Windows / Linux / macOS)
+
+```bash
+python -m pip install -r requirements.txt
+python -m pytest src/test_agents.py -v
+python src/benchmark.py --output benchmark_results.json
+```
+
+Offline mặc định, không cần API key. Benchmark luôn dùng state tạm sạch, không thay đổi hồ sơ sử dụng thực tế.
+
+### Chế độ live tùy chọn
+
+```bash
+python -m pip install -r requirements-live.txt
+```
+
+Sao chép `.env.example` thành `.env`, đặt `LLM_MODE=live`, chọn `LLM_PROVIDER`/`LLM_MODEL` và API key tương ứng. Custom cần `CUSTOM_BASE_URL`; Ollama cần server đang chạy và model đã tải. OpenRouter dùng endpoint OpenAI-compatible. Các version ranges là yêu cầu cài đặt, chưa phải lockfile đã xác minh live.
+
+Ví dụ chạy agent thực tế từ root:
+
+```python
+import sys
+sys.path.insert(0, "src")
+from agent_advanced import AdvancedAgent
+agent = AdvancedAgent()
+print(agent.reply("my-user", "session-1", "Mình tên là Trung.")["response"])
+print(agent.reply("my-user", "session-2", "Mình tên gì?")["response"])
+```
+
+Provider chỉ được import khi bật live. Lỗi thiếu key/package hoặc API sẽ được báo trực tiếp. Benchmark vẫn offline kể cả `.env` bật live, để tránh gọi API ngoài ý muốn. Cấu hình judge được hỗ trợ, còn chỉ số quality đang dùng heuristic cục bộ và không gọi judge.
